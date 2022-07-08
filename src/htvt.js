@@ -56,7 +56,7 @@ export default function HTVT() {
       <>
         <div className="contain">
           <div className="title">
-            ds{i}
+            Hàng đợi {i}
             {j} :
           </div>
           <table className="table">
@@ -86,16 +86,32 @@ export default function HTVT() {
     if (q.length > 1) {
       return (
         <div>
-          Hàng đợi ds{i}
+          Hàng đợi {i}
           {j} xảy ra va chạm
         </div>
       );
     } else {
+      {
+        /* {q.length && (
+            <span>
+              {" =>"} tín hiệu {q[0]} được đưa vào DTQ
+            </span>
+          )} */
+      }
       return (
-        <div>
-          Hàng đợi ds{i}
-          {j} không xảy ra va chạm
-        </div>
+        <>
+          {q.length ? (
+            <div>
+              Hàng đợi {i}
+              {j} không xảy ra va chạm {" =>"} tín hiệu {q[0]} được đưa vào DTQ
+            </div>
+          ) : (
+            <div>
+              Hàng đợi {i}
+              {j} không xảy ra va chạm
+            </div>
+          )}
+        </>
       );
     }
   };
@@ -191,7 +207,6 @@ export default function HTVT() {
     n32 = ds32.length;
     n33 = ds33.length;
     if ((n21 > 1 && n22 > 1 && n23 < 2) || n31 > 0 || n32 > 0 || n33 > 0) {
-
       Doihangcho(ds21, ds41, ds43, n21, 2, 1);
       Doihangcho(ds22, ds51, ds53, n22, 2, 2);
     } else if (
@@ -200,7 +215,6 @@ export default function HTVT() {
       n32 > 0 ||
       n33 > 0
     ) {
-    
       Doihangcho(ds21, ds41, ds43, n21, 2, 1);
       Doihangcho(ds22, ds51, ds53, n22, 2, 2);
     } else if (
@@ -209,7 +223,6 @@ export default function HTVT() {
       n32 > 0 ||
       n33 > 0
     ) {
-    
       Doihangcho(ds21, ds41, ds43, n21, 2, 1);
       Doihangcho(ds23, ds51, ds53, n23, 2, 3);
     } else if (
@@ -218,7 +231,6 @@ export default function HTVT() {
       n32 > 0 ||
       n33 > 0
     ) {
-  
       Doihangcho(ds22, ds41, ds43, n22, 2, 2);
     } else if (
       (n21 < 2 && n22 > 1 && n23 > 1) ||
@@ -226,7 +238,6 @@ export default function HTVT() {
       n32 > 0 ||
       n33 > 0
     ) {
-  
       Doihangcho(ds22, ds41, ds43, n23, 2, 2);
       Doihangcho(ds23, ds51, ds53, n23, 2, 3);
     } else if (
@@ -235,7 +246,6 @@ export default function HTVT() {
       n32 > 0 ||
       n33 > 0
     ) {
- 
       Doihangcho(ds23, ds41, ds43, n23, 2, 3);
     } else if (
       (n21 > 1 && n22 > 1 && n23 > 1) ||
@@ -243,7 +253,6 @@ export default function HTVT() {
       n32 > 0 ||
       n33 > 0
     ) {
- 
       Doihangcho(ds21, ds41, ds43, n21, 2, 1);
       Doihangcho(ds22, ds51, ds53, n22, 2, 2);
       Doihangcho(ds23, ds61, ds63, n23, 2, 3);
@@ -253,7 +262,6 @@ export default function HTVT() {
       n32 === 0 ||
       n33 === 0
     ) {
- 
       Doihangcho(ds21, ds31, ds33, n21, 2, 1);
     } else if (
       (n21 > 1 && n22 > 1 && n23 < 2) ||
@@ -314,7 +322,7 @@ export default function HTVT() {
         Cơ chế chống xung đột tín hiệu bằng thuật toán hàng đợi phân tán
       </div>
       <div className="flex">
-        <div>Nhập số tín hiệu ở hàng đợi ds11 : </div>
+        <div>Nhập số tín hiệu ở hàng đợi 11 : </div>
         <div className="input">
           <InputNumber
             min={1}
@@ -330,7 +338,7 @@ export default function HTVT() {
         </div>
       </div>
       <div className="flex">
-        <div>Nhập số tín hiệu ở hàng đợi ds12 : </div>
+        <div>Nhập số tín hiệu ở hàng đợi 12 : </div>
         <div className="input">
           <InputNumber
             min={1}
@@ -346,7 +354,7 @@ export default function HTVT() {
         </div>
       </div>
       <div className="flex">
-        <div>Nhập số tín hiệu ở hàng đợi ds13 : </div>
+        <div>Nhập số tín hiệu ở hàng đợi 13 : </div>
         <div className="input">
           <InputNumber
             min={1}
@@ -361,27 +369,26 @@ export default function HTVT() {
           />
         </div>
       </div>
-          <div>Các phần tử đã nhập ban đầu trong hàng đợi là : </div>
-          {Inhangdoi(ds11, 1, 1)}
-          {Inhangdoi(ds12, 1, 2)}
-          {Inhangdoi(ds13, 1, 3)}
-          {PhanTanHangDoi1()}
-          <div>Sắp xếp hàng đợi lần 1 : </div>
-          {Inhangdoi(ds21, 2, 1)}
-          {Inhangdoi(ds22, 2, 2)}
-          {Inhangdoi(ds23, 2, 3)}
-          {Inhangdoi(ds31, 3, 1)}
-          {Inhangdoi(ds32, 3, 2)}
-          {Inhangdoi(ds33, 3, 3)}
-          {PhanTanHangDoi2(ds21, ds22, ds23, ds31, ds32, ds33)}
-          <div>Sắp xếp hàng đợi lần 2 : </div>
-          {Inhangdoi(ds41, 4, 1)}
-          {Inhangdoi(ds42, 4, 2)}
-          {Inhangdoi(ds43, 4, 3)}
-          {Inhangdoi(ds51, 5, 1)}
-          {Inhangdoi(ds52, 5, 2)}
-          {Inhangdoi(ds53, 5, 3)}
-     
+      <div>Các phần tử đã nhập ban đầu trong hàng đợi là : </div>
+      {Inhangdoi(ds11, 1, 1)}
+      {Inhangdoi(ds12, 1, 2)}
+      {Inhangdoi(ds13, 1, 3)}
+      {PhanTanHangDoi1()}
+      <div>Sắp xếp hàng đợi lần 1 : </div>
+      {Inhangdoi(ds21, 2, 1)}
+      {Inhangdoi(ds22, 2, 2)}
+      {Inhangdoi(ds23, 2, 3)}
+      {Inhangdoi(ds31, 3, 1)}
+      {Inhangdoi(ds32, 3, 2)}
+      {Inhangdoi(ds33, 3, 3)}
+      {PhanTanHangDoi2(ds21, ds22, ds23, ds31, ds32, ds33)}
+      <div>Sắp xếp hàng đợi lần 2 : </div>
+      {Inhangdoi(ds41, 4, 1)}
+      {Inhangdoi(ds42, 4, 2)}
+      {Inhangdoi(ds43, 4, 3)}
+      {Inhangdoi(ds51, 5, 1)}
+      {Inhangdoi(ds52, 5, 2)}
+      {Inhangdoi(ds53, 5, 3)}
     </>
   );
 }
